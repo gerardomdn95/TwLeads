@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="container">
   <p class="text-center">Hola, selecciona un
     <br> canal para solicitar tu cotización</p>
@@ -6,9 +8,44 @@
     <button class="loginBtn loginBtn--facebook">
       Cotiza con Facebook
     </button>
-
+    <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false"
+      data-auto-logout-link="false" data-use-continue-as="false"></div>
     <button style="margin-top:15px;" class="loginBtn loginBtn--google">
       Cotiza con Google
     </button>
+  </div>
+</div>
+
+<div class="jumbotron bg-transparent text-center">
+  <div *ngIf="!user" class="card text-center">
+    <h6 class="card-header">
+      Social Login Demo
+    </h6>
+    <div class="card-block">
+      <h4 class="card-title">Not signed in</h4>
+      <p class="card-text">Sign in with</p>
+    </div>
+    <div class="card-block">
+      <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()">
+        <span class="fa fa-google"></span>
+      </button>
+      <button class="btn btn-social-icon btn-facebook" (click)="signInWithFB()">
+        <span class="fa fa-facebook"></span>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="user" class="card text-center">
+    <h6 class="card-header">
+      Social Login Demo
+    </h6>
+    <div class="card-block"></div>
+    <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+    <div class="card-block">
+      <h4 class="card-title">{{ user.name }}</h4>
+      <p class="card-text">{{ user.email }}</p>
+    </div>
+    <div class="card-block">
+      <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+    </div>
   </div>
 </div>
