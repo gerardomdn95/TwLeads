@@ -8,6 +8,13 @@ import { FormComponent } from './form/form.component';
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AuthService } from './services/auth.service';
+
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -28,9 +35,12 @@ const config = new AuthServiceConfig([
   ],
   imports: [
     BrowserModule,
-    SocialLoginModule.initialize(config)
+    SocialLoginModule.initialize(config),
+    AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
