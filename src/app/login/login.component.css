@@ -171,7 +171,3 @@ label {
 .switch-field label::after {
     display: none;
 }
-
-agm-map {
-    height: 300px;
-}

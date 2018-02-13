@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 @Component({
@@ -15,10 +16,26 @@ import { AuthService } from '../services/auth.service';
 export class FormComponent implements OnInit {
   router: any;
   authService: any;
+  public koomkin = false;
+  private userDetails: firebase.User = null;
   private user: Observable<firebase.User>;
 
   constructor(private _firebaseAuth: AngularFireAuth) {
     this.user = _firebaseAuth.authState;
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          this.userDetails = user;
+          console.log(this.userDetails);
+        } else {
+          this.userDetails = null;
+        }
+      }
+    );
+  }
+
+  signInWithKoomkin() {
+    this.koomkin = true;
   }
 
   signInWithTwitter() {
@@ -34,9 +51,22 @@ export class FormComponent implements OnInit {
   }
 
   signInWithFacebook() {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('public_profile');
     return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.FacebookAuthProvider()
+      provider
     );
+  }
+
+  isLoggedIn() {
+    if (this.userDetails == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  logout() {
+    this._firebaseAuth.auth.signOut();
   }
 
   ngOnInit() {

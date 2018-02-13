@@ -1,14 +1,89 @@
-<div class="form-group">
-  <button type="buton" class="btn btn-block" (click)="signInWithFacebook()">
-    <i class="fa fa-facebook" aria-hidden="true"></i>
-    Login with Facebook
-  </button>
-  <button type="button" class="btn btn-block" (click)="signInWithTwitter()">
-    <i class="fa fa-twitter" aria-hidden="true"></i>
-    Login with Twitter
-  </button>
-  <button type="button" class="btn btn-block" (click)="signInWithGoogle()">
-    <i class="fa fa-google" aria-hidden="true"></i>
-    Login with Google
-  </button>
+<div class="container">
+  <div class="form-group" *ngIf="!userDetails">
+    <p class="text-center">Hola, selecciona un
+      <br> canal para solicitar tu cotización</p>
+    <div class="text-center">
+      <button class="loginBtn loginBtn--facebook" (click)="signInWithFacebook()">
+        Cotiza con Facebook
+      </button>
+      <button style="margin-top:15px;" class="loginBtn loginBtn--google" (click)="signInWithGoogle()">
+        Cotiza con Google
+      </button>
+      <button style="margin-top:15px;" class="loginBtn" style="background-color:#00A4EF; margin-top:15px;" (click)="signInWithTwitter()">
+        Cotiza con Twitter
+      </button>
+      <hr>o si prefieres
+      <hr>
+      <button style="margin-top:15px;" class="loginBtn" style="background-color:#00BAB9; margin-top:15px;" (click)="signInWithKoomkin()">
+        Cotiza con Koomkin
+      </button>
+    </div>
+  </div>
+
+  <!-- Social Media Login -->
+  <div *ngIf="userDetails">
+    <div class="row">
+      <div class="container">
+        <p class="text-center">Bienvenido
+          <b>{{userDetails.displayName}}</b>, proporciona tus datos a continuación para obtener más información</p>
+        <div class="form-group">
+          <label for="usr">Nombre completo</label>
+          <input type="text" class="form-control" id="usr" value="{{userDetails.displayName}}">
+          <div class="form mx-auto" style="margin-top:15px;">
+            <div class="switch-field">
+              <input type="radio" id="Negocios" name="hotel" value="Negocios">
+              <label for="Negocios" style="text-transform: unset;">Cotización personal</label>
+              <input type="radio" id="Placer" name="hotel" value="Placer">
+              <label for="Placer" style="text-transform: unset;">Cotización empresarial</label>
+            </div>
+          </div>
+          <label for="pwd">Nombre de empresa</label>
+          <input type="text" class="form-control" id="pwd">
+          <label for="pwd">Teléfono de contacto</label>
+          <input type="text" class="form-control" id="pwd" value="{{userDetails.phoneNumber}}">
+          <label for="pwd">Correo electrónico</label>
+          <input type="text" class="form-control" id="pwd" value="{{userDetails.providerData[0].email}}{{userDetails.email}}">
+          <label for="pwd">Ciudad</label>
+          <input type="text" class="form-control" id="pwd">
+        </div>
+        <br> {{userDetails.providerData[0].providerId}}
+        <button class="button text-center" style="width:100%" (click)="logout()">
+          <a routerLink="/ok">¡Envía tu información!</a>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Social Media -->
+  <div *ngIf="koomkin">
+    <div class="row">
+      <div class="container">
+        <p class="text-center">Bienvenido, proporciona tus datos a continuación para obtener más información</p>
+        <div class="form-group">
+          <label for="usr">Nombre completo</label>
+          <input type="text" class="form-control" id="usr" value="{{userDetails.displayName}}">
+          <div class="form mx-auto" style="margin-top:15px;">
+            <div class="switch-field">
+              <input type="radio" id="Negocios" name="hotel" value="Negocios">
+              <label for="Negocios" style="text-transform: unset;">Cotización personal</label>
+              <input type="radio" id="Placer" name="hotel" value="Placer">
+              <label for="Placer" style="text-transform: unset;">Cotización empresarial</label>
+            </div>
+          </div>
+          <label for="pwd">Nombre de empresa</label>
+          <input type="text" class="form-control" id="pwd">
+          <label for="pwd">Teléfono de contacto</label>
+          <input type="text" class="form-control" id="pwd" value="{{userDetails.phoneNumber}}">
+          <label for="pwd">Correo electrónico</label>
+          <input type="text" class="form-control" id="pwd" value="{{userDetails.providerData[0].email}}">
+          <label for="pwd">Ciudad</label>
+          <input type="text" class="form-control" id="pwd">
+        </div>
+        <br> {{userDetails.providerData[0].providerId}}
+        <button class="button text-center" style="width:100%" (click)="logout()">
+          <a routerLink="/ok">¡Envía tu información!</a>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
