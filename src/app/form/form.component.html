@@ -3,20 +3,12 @@
     <p class="text-center">Hola, selecciona un
       <br> canal para solicitar tu cotización</p>
     <div class="text-center">
-      <button class="loginBtn loginBtn--facebook" (click)="signInWithFacebook()">
-        Cotiza con Facebook
-      </button>
-      <button style="margin-top:15px;" class="loginBtn loginBtn--google" (click)="signInWithGoogle()">
-        Cotiza con Google
-      </button>
-      <button style="margin-top:15px;" class="loginBtn" style="background-color:#00A4EF; margin-top:15px;" (click)="signInWithTwitter()">
-        Cotiza con Twitter
-      </button>
+      <img class="auth" src="../assets/img/facebook.svg" alt="" (click)="signInWithFacebook()">
+      <img class="auth" src="../assets/img/google.svg" alt="" (click)="signInWithGoogle()">
+      <img class="auth" src="../assets/img/twitter.svg" alt="" (click)="signInWithTwitter()">
       <hr>o si prefieres
       <hr>
-      <button style="margin-top:15px;" class="loginBtn" style="background-color:#00BAB9; margin-top:15px;" (click)="signInWithKoomkin()">
-        Cotiza con Koomkin
-      </button>
+      <img class="auth" src="../assets/img/koomkin.svg" alt="" (click)="signInWithKoomkin()">
     </div>
   </div>
 

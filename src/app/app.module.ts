@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SocialLoginModule } from 'angularx-social-login';
 import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
@@ -16,12 +17,14 @@ import { AuthService } from './services/auth.service';
 import { Router, Routes, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CampaignComponent } from './campaign/campaign.component';
+import { SeoService } from './seo.service';
+import { CampaignSystemComponent } from './campaign-system/campaign-system.component';
+import { CampaignTwoComponent } from './campaign-two/campaign-two.component';
 
 const routes: Routes = [
   { path: '', component: FormComponent, },
-  { path: 'about-page', component: FormComponent, },
-  { path: 'contact-page', component: FormComponent, },
-  { path: 'firebase-page', component: FormComponent, }
+  { path: 'twitter', component: CampaignSystemComponent, },
+  { path: 'campaign', component: CampaignComponent, }
 ];
 
 @NgModule({
@@ -30,6 +33,8 @@ const routes: Routes = [
     FormComponent,
     NavComponent,
     CampaignComponent,
+    CampaignSystemComponent,
+    CampaignTwoComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +42,10 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFontAwesomeModule,
+    FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService],
+  providers: [AuthService, SeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

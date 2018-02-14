@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="container">
+        <div class="card">
+          <img class="card-img-top" src="https://drive.google.com/uc?id=15mS0Xtsp4f3ZijOnlnj2izd8RqENOqKg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title" style="color: black">{{title}}</h5>
+            <p class="card-text" style="color: black">{{body}}</p>
+            <p class="card-text">koomkin.com.mx</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <label for="pwd">Título</label>
+      <input type="text" class="form-control" id="pwd" [(ngModel)]="title">
+      <label for="pwd">Contenido</label>
+      <textarea class="form-control" id="pwd" [(ngModel)]="body"></textarea>
+      <label for="pwd">Imagen</label>
+      <br>
+      <input type="file" id="pwd">
+    </div>
+  </div>
+</div>
