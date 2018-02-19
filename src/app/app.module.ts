@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { SocialLoginModule } from 'angularx-social-login';
 import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { FormsModule } from '@angular/forms';
+import { AngularFireStorage, AngularFireStorageModule } from 'angularfire2/storage';
 
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
@@ -20,11 +21,14 @@ import { CampaignComponent } from './campaign/campaign.component';
 import { SeoService } from './seo.service';
 import { CampaignSystemComponent } from './campaign-system/campaign-system.component';
 import { CampaignTwoComponent } from './campaign-two/campaign-two.component';
+import { DropZoneDirective } from './drop-zone.directive';
+import { NoSocialMediaComponent } from './no-social-media/no-social-media.component';
 
 const routes: Routes = [
   { path: '', component: FormComponent, },
   { path: 'twitter', component: CampaignSystemComponent, },
-  { path: 'campaign', component: CampaignComponent, }
+  { path: 'campaign', component: CampaignComponent, },
+  { path: 'noSocial', component:  NoSocialMediaComponent, }
 ];
 
 @NgModule({
@@ -35,15 +39,19 @@ const routes: Routes = [
     CampaignComponent,
     CampaignSystemComponent,
     CampaignTwoComponent,
+    DropZoneDirective,
+    NoSocialMediaComponent,
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFontAwesomeModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    AngularFireStorageModule,
+    AngularFireStorageModule,
   ],
   providers: [AuthService, SeoService],
   bootstrap: [AppComponent]

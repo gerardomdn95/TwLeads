@@ -19,6 +19,7 @@ export class FormComponent implements OnInit {
   public koomkin = false;
   private userDetails: firebase.User = null;
   private user: Observable<firebase.User>;
+  public show: boolean;
 
   constructor(private _firebaseAuth: AngularFireAuth) {
     this.user = _firebaseAuth.authState;
@@ -32,6 +33,14 @@ export class FormComponent implements OnInit {
         }
       }
     );
+  }
+
+  hideTrue() {
+    this.show = true;
+  }
+
+  hideFalse() {
+    this.show = false;
   }
 
   signInWithKoomkin() {
@@ -67,6 +76,14 @@ export class FormComponent implements OnInit {
   }
   logout() {
     this._firebaseAuth.auth.signOut();
+  }
+
+  public showCompany(e): void {
+    if (e) {
+      this.show = true;
+    } else {
+      this.show = false;
+    }
   }
 
   ngOnInit() {

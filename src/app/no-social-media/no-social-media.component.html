@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="container">
+      <h3 class="text-center">Cotiza con un click</h3>
+      <p class="text-center">Bienvenido, proporciona tus datos a continuación para obtener más información</p>
+      <div class="form-group">
+        <label for="usr">Nombre completo</label>
+        <input type="text" class="form-control" id="usr">
+        <div class="form mx-auto" style="margin-top:15px;">
+          <div class="switch-field">
+            <input type="radio" id="Negocios" name="noSocial" value="Personal" (click)="showCompany(false)">
+            <label for="Negocios" style="text-transform: unset;">Cotización
+              <br>personal</label>
+            <input type="radio" id="Placer" name="noSocial" value="Empresarial" (click)="showCompany(true)">
+            <label for="Placer" style="text-transform: unset;">Cotización
+              <br>empresarial</label>
+          </div>
+        </div>
+        <div *ngIf="show">
+          <label for="pwd">Nombre de empresa</label>
+          <input type="text" class="form-control" id="pwd">
+        </div>
+        <label for="pwd">Teléfono de contacto</label>
+        <input type="text" class="form-control" id="pwd">
+        <label for="pwd">Correo electrónico</label>
+        <input type="text" class="form-control" id="pwd">
+        <label for="pwd">Ciudad</label>
+        <input type="text" class="form-control" id="pwd">
+      </div>
+      <button type="button" class="btn btn-primary">¡Envía tu información!</button>
+    </div>
+  </div>
+</div>

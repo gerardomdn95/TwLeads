@@ -1,4 +1,5 @@
 <div class="container">
+  <h3 class="text-center">Cotiza con un click</h3>
   <div class="form-group" *ngIf="!userDetails">
     <p class="text-center">Hola, selecciona un
       <br> canal para solicitar tu cotización</p>
@@ -8,7 +9,9 @@
       <img class="auth" src="../assets/img/twitter.svg" alt="" (click)="signInWithTwitter()">
       <hr>o si prefieres
       <hr>
-      <img class="auth" src="../assets/img/koomkin.svg" alt="" (click)="signInWithKoomkin()">
+      <a routerLink="/noSocial">
+        <img class="auth" src="../assets/img/koomkin.svg">
+      </a>
     </div>
   </div>
 
@@ -23,14 +26,18 @@
           <input type="text" class="form-control" id="usr" value="{{userDetails.displayName}}">
           <div class="form mx-auto" style="margin-top:15px;">
             <div class="switch-field">
-              <input type="radio" id="Negocios" name="hotel" value="Negocios">
-              <label for="Negocios" style="text-transform: unset;">Cotización personal</label>
-              <input type="radio" id="Placer" name="hotel" value="Placer">
-              <label for="Placer" style="text-transform: unset;">Cotización empresarial</label>
+              <input type="radio" id="Negocios" name="Company" value="Negocios" (click)="showCompany(false)">
+              <label for="Negocios" style="text-transform: unset;">Cotización
+                <br>personal</label>
+              <input type="radio" id="Placer" name="Company" value="Placer" (click)="showCompany(true)">
+              <label for="Placer" style="text-transform: unset;">Cotización
+                <br>empresarial</label>
             </div>
           </div>
-          <label for="pwd">Nombre de empresa</label>
-          <input type="text" class="form-control" id="pwd">
+          <div *ngIf="show">
+            <label for="pwd">Nombre de empresa</label>
+            <input type="text" class="form-control" id="pwd">
+          </div>
           <label for="pwd">Teléfono de contacto</label>
           <input type="text" class="form-control" id="pwd" value="{{userDetails.phoneNumber}}">
           <label for="pwd">Correo electrónico</label>
@@ -38,44 +45,9 @@
           <label for="pwd">Ciudad</label>
           <input type="text" class="form-control" id="pwd">
         </div>
-        <br> {{userDetails.providerData[0].providerId}}
-        <button class="button text-center" style="width:100%" (click)="logout()">
-          <a routerLink="/ok">¡Envía tu información!</a>
-        </button>
+        <button type="button" class="btn btn-primary" (click)="logout()">¡Envía tu información!</button>
       </div>
     </div>
   </div>
-
-  <!-- No Social Media -->
-  <div *ngIf="koomkin">
-    <div class="row">
-      <div class="container">
-        <p class="text-center">Bienvenido, proporciona tus datos a continuación para obtener más información</p>
-        <div class="form-group">
-          <label for="usr">Nombre completo</label>
-          <input type="text" class="form-control" id="usr" value="{{userDetails.displayName}}">
-          <div class="form mx-auto" style="margin-top:15px;">
-            <div class="switch-field">
-              <input type="radio" id="Negocios" name="hotel" value="Negocios">
-              <label for="Negocios" style="text-transform: unset;">Cotización personal</label>
-              <input type="radio" id="Placer" name="hotel" value="Placer">
-              <label for="Placer" style="text-transform: unset;">Cotización empresarial</label>
-            </div>
-          </div>
-          <label for="pwd">Nombre de empresa</label>
-          <input type="text" class="form-control" id="pwd">
-          <label for="pwd">Teléfono de contacto</label>
-          <input type="text" class="form-control" id="pwd" value="{{userDetails.phoneNumber}}">
-          <label for="pwd">Correo electrónico</label>
-          <input type="text" class="form-control" id="pwd" value="{{userDetails.providerData[0].email}}">
-          <label for="pwd">Ciudad</label>
-          <input type="text" class="form-control" id="pwd">
-        </div>
-        <br> {{userDetails.providerData[0].providerId}}
-        <button class="button text-center" style="width:100%" (click)="logout()">
-          <a routerLink="/ok">¡Envía tu información!</a>
-        </button>
-      </div>
-    </div>
-  </div>
+  <br> {{userDetails.providerData[0].providerId}}
 </div>

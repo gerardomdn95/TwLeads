@@ -1,9 +1,46 @@
-<div class="container">
+<div id="UserId" class="container" *ngIf="!show">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6 text-center">
+      <div class="card">
+        <br>
+        <h4>Genera una nueva campaña</h4>
+        <p>Ingresa el ID de usuario para generar una nueva campaña.</p>
+        <div class="container">
+          <input type="number" class="form-control" id="pwd" max="99999" min="0">
+        </div>
+        <br>
+        <div class="text-center">
+          <button type="button" class="btn-primary" (click)="hideElement()">Genera una campaña</button>
+        </div>
+        <br>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 text-center">
+      <div class="card">
+        <br>
+        <h4>Optimiza una campaña</h4>
+        <p>Ingresa el ID de usuario para generar una nueva campaña.</p>
+        <div class="container">
+          <input type="number" class="form-control" id="pwd" max="99999" min="0">
+        </div>
+        <br>
+        <div class="text-center">
+          <button type="button" class="btn-primary" (click)="hideElement()">Optimiza una campaña</button>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="show">
+  <div class="row">
+    <div class="col-12 col-md-6">
       <div class="container">
         <div class="card">
-          <img class="card-img-top" src="https://drive.google.com/uc?id=15mS0Xtsp4f3ZijOnlnj2izd8RqENOqKg" alt="Card image cap">
+          <div *ngIf="downloadURL | async as url">
+            <img class="card-img-top" [src]="url" alt="">
+          </div>
           <div class="card-body">
             <h5 class="card-title" style="color: black">{{title}}</h5>
             <p class="card-text" style="color: black">{{body}}</p>
@@ -12,14 +49,31 @@
         </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
+      <label for="pwd">ID Usuario</label>
+      <input type="number" class="form-control" id="pwd" max="99999" min="0">
       <label for="pwd">Título</label>
       <input type="text" class="form-control" id="pwd" [(ngModel)]="title">
       <label for="pwd">Contenido</label>
       <textarea class="form-control" id="pwd" [(ngModel)]="body"></textarea>
       <label for="pwd">Imagen</label>
-      <br>
-      <input type="file" id="pwd">
+
+      <div *ngIf="percentage | async as pct">
+        <progress [value]="pct" max="100"></progress>
+      </div>
+
+      <div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)" [class.hovering]="isHovering">
+        <h3>Arrastra o selecciona una imagen</h3>
+        <div class="file">
+          <label class="file-label">
+            <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+          </label>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="button" class="btn-primary">Generar</button>
+      </div>
     </div>
   </div>
 </div>
