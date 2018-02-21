@@ -19,10 +19,10 @@ import { AuthService } from './services/auth.service';
 import { Router, Routes, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CampaignComponent } from './campaign/campaign.component';
-import { SeoService } from './seo.service';
+import { SeoService } from './services/seo.service';
 import { CampaignSystemComponent } from './campaign-system/campaign-system.component';
 import { CampaignTwoComponent } from './campaign-two/campaign-two.component';
-import { DropZoneDirective } from './drop-zone.directive';
+import { DropZoneDirective } from './directives/drop-zone.directive';
 import { NoSocialMediaComponent } from './no-social-media/no-social-media.component';
 
 const routes: Routes = [
