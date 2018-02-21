@@ -1,3 +1,7 @@
+.caracteres {
+  font-size: 10px;
+}
+
 .dropzone {
   display: flex;
   align-items: center;

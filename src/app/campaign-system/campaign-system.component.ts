@@ -10,8 +10,9 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CampaignSystemComponent implements OnInit {
 
-  title = 'Koomkin';
-  body = 'Ecuentra productos y servicios de calidad.';
+  title = 'Koomkin Lorem ipsum dolor sit.';
+  // tslint:disable-next-line:max-line-length
+  body = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis.';
   show = false;
 
   // Main task

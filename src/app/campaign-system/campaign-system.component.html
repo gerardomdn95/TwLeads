@@ -48,21 +48,33 @@
           </div>
         </div>
       </div>
+      <br>
+      <div class="container">
+        <p>*Este gráfico demuestra es una vista previa de la tarjeta a generar, su apariencia puede variar mínimamente dependiendo
+          el sitio donde se publique.</p>
+      </div>
+      <h5>Card URL</h5>
+      <input type="text" class="form-control" id="pwd">
     </div>
     <div class="col-12 col-md-6">
-      <label for="pwd">ID Usuario</label>
-      <input type="number" class="form-control" id="pwd" max="99999" min="0">
       <label for="pwd">Título</label>
-      <input type="text" class="form-control" id="pwd" [(ngModel)]="title">
+      <input type="text" class="form-control" id="pwd" maxlength="30" [(ngModel)]="title">
+      <div class="text-right">
+        <b class="caracteres">Caracteres {{title.length}}/30</b>
+      </div>
+      <br>
       <label for="pwd">Contenido</label>
-      <textarea class="form-control" id="pwd" [(ngModel)]="body"></textarea>
+      <textarea rows="5" class="form-control" id="pwd" [(ngModel)]="body" maxlength="256"></textarea>
+      <div class="text-right">
+        <b class="caracteres">Caracteres {{body.length}}/256</b>
+      </div>
+      <br>
       <label for="pwd">Imagen</label>
-
       <div *ngIf="percentage | async as pct">
         <progress [value]="pct" max="100"></progress>
       </div>
 
-      <div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)" [class.hovering]="isHovering">
+      <div class="dropzone text-center" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)" [class.hovering]="isHovering">
         <h3>Arrastra o selecciona una imagen</h3>
         <div class="file">
           <label class="file-label">
