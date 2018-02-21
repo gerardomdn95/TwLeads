@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Lead } from '../models/app.lead-model';
 
 @Component({
   selector: 'app-no-social-media',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoSocialMediaComponent implements OnInit {
 
+  model: any;
   public show: boolean;
 
   public showCompany(e): void {
@@ -20,6 +22,7 @@ export class NoSocialMediaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.model = new Lead(null, null, null, null, null, null, null);
   }
 
 }

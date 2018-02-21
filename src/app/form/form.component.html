@@ -1,3 +1,4 @@
+{{currentLead}}
 <div class="container">
   <h3 class="text-center">Cotiza con un click</h3>
   <div class="form-group" *ngIf="!userDetails">
@@ -23,7 +24,7 @@
           <b>{{userDetails.displayName}}</b>, proporciona tus datos a continuación para obtener más información</p>
         <div class="form-group">
           <label for="usr">Nombre completo</label>
-          <input type="text" class="form-control" id="usr" value="{{userDetails.displayName}}">
+          <input type="text" class="form-control" id="usr" [(ngModel)]="model.name">
           <div class="form mx-auto" style="margin-top:15px;">
             <div class="switch-field">
               <input type="radio" id="Negocios" name="Company" value="Negocios" (click)="showCompany(false)">
@@ -36,16 +37,16 @@
           </div>
           <div *ngIf="show">
             <label for="pwd">Nombre de empresa</label>
-            <input type="text" class="form-control" id="pwd">
+            <input type="text" class="form-control" id="pwd" [(ngModel)]="model.company">
           </div>
           <label for="pwd">Teléfono de contacto</label>
-          <input type="text" class="form-control" id="pwd" value="{{userDetails.phoneNumber}}">
+          <input type="text" class="form-control" id="pwd" [(ngModel)]="model.phone">
           <label for="pwd">Correo electrónico</label>
-          <input type="text" class="form-control" id="pwd" value="{{userDetails.providerData[0].email}}{{userDetails.email}}">
+          <input type="text" class="form-control" id="pwd" [(ngModel)]="model.email">
           <label for="pwd">Estado</label>
-          <input type="text" class="form-control" id="pwd">
+          <input type="text" class="form-control" id="pwd" [(ngModel)]="model.region_id">
           <label for="pwd">Ciudad</label>
-          <input type="text" class="form-control" id="pwd">
+          <input type="text" class="form-control" id="pwd" [(ngModel)]="model.city">
         </div>
         <button type="button" class="btn btn-primary" (click)="logout()">¡Envía tu información!</button>
       </div>
@@ -53,3 +54,5 @@
   </div>
   <br> {{userDetails.providerData[0].providerId}}
 </div>
+
+{{model}}

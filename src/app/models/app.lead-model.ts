@@ -6,5 +6,6 @@ export class Lead {
         public phone: string,
         public region_id: string,
         public city: string,
+        public company_name?: string,
     ) { }
 }

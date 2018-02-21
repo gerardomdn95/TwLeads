@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { not } from '@angular/compiler/src/output/output_ast';
+import { Lead } from '../models/app.lead-model';
 
 @Injectable()
 @Component({
@@ -20,6 +21,7 @@ export class FormComponent implements OnInit {
   private userDetails: firebase.User = null;
   private user: Observable<firebase.User>;
   public show: boolean;
+  public model: any;
 
   constructor(private _firebaseAuth: AngularFireAuth) {
     this.user = _firebaseAuth.authState;
@@ -87,6 +89,12 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.model = new Lead(null, this.userDetails.displayName, this.userDetails.providerData[0].email,
+      null, null, null, null);
+  }
+
+  get currentLead() {
+    return console.log(this.model);
   }
 
 }
