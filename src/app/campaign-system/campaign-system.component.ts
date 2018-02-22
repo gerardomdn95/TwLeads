@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SeoService } from '../services/seo.service';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
+import { Card } from '../models/app.card-model';
+import { CardService } from '../services/card.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-campaign-system',
@@ -10,10 +13,12 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CampaignSystemComponent implements OnInit {
 
-  title = 'Koomkin Lorem ipsum dolor sit.';
-  // tslint:disable-next-line:max-line-length
-  body = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis.';
+  @Input() cardData: any;
+  public model: any;
+  card: any;
+  APIENDPOINT = 'http://187.162.208.218:4200/twitter/card';
   show = false;
+  jsonCard: any;
 
   // Main task
   task: AngularFireUploadTask;
@@ -29,12 +34,12 @@ export class CampaignSystemComponent implements OnInit {
   // State for dropzone CSS toggling
   isHovering: boolean;
 
-  constructor(private seo: SeoService, private storage: AngularFireStorage) { }
+  constructor(private seo: SeoService, private storage: AngularFireStorage,
+    private cardService: CardService, private http: HttpClient) { }
 
   toggleHover(event: boolean) {
     this.isHovering = event;
   }
-
 
   startUpload(event: FileList) {
     // The File object
@@ -61,6 +66,7 @@ export class CampaignSystemComponent implements OnInit {
 
     // The file's download URL
     this.downloadURL = this.task.downloadURL();
+    console.log(this.downloadURL);
   }
 
   // Determines if the upload task is active
@@ -68,17 +74,33 @@ export class CampaignSystemComponent implements OnInit {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
-  hideElement() {
-    this.show = true;
-  }
-
   ngOnInit() {
+    this.model = new Card(this.cardData.user_id, this.cardData.title,
+      this.cardData.description, this.cardData.image_url);
     this.seo.generateTags({
-      title: 'Contact Page',
-      description: 'Hola Hola',
-      image: 'https://instafire-app.firebaseapp.com/assets/meerkat.jpeg',
+      title: 'Twitter Card System',
+      description: 'Genera tu tarjeta dinámica.',
+      image: '',
       slug: 'contact-page'
     });
+  }
+
+  postCard() {
+    console.log(this.model);
+    this.http.post(this.APIENDPOINT, {
+      description: this.cardData.description,
+      image: 'https://drive.google.com/uc?id=1IsJTXEU5XLece1y_4f8MmrDjuiUkb5Pw',
+      title: this.cardData.title,
+      user_id: 5,
+    })
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log('Error occured');
+        }
+      );
   }
 
 }

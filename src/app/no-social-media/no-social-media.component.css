@@ -101,3 +101,20 @@ label {
 .switch-field label::after {
   display: none;
 }
+
+button,
+select {
+  width: 100%;
+  height: 35px;
+  border-radius: .25rem;
+  border: 1px solid #ced4da;
+  height: 40px;
+  padding: 5px;
+}
+
+.btn-primary {
+  background-color: #00A4EF;
+  border: #00A4EF;
+  width: 100%;
+  height: 60px;
+}

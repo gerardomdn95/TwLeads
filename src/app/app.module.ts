@@ -4,6 +4,7 @@ import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'a
 import { FormsModule } from '@angular/forms';
 import { AngularFireStorage, AngularFireStorageModule } from 'angularfire2/storage';
 import { HttpClientModule } from '@angular/common/http';
+import { CardService } from './services/card.service';
 
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
@@ -23,10 +24,11 @@ import { CampaignSystemComponent } from './campaign-system/campaign-system.compo
 import { CampaignTwoComponent } from './campaign-two/campaign-two.component';
 import { DropZoneDirective } from './directives/drop-zone.directive';
 import { NoSocialMediaComponent } from './no-social-media/no-social-media.component';
+import { NewCampaignComponent } from './new-campaign/new-campaign.component';
 
 const routes: Routes = [
   { path: '', component: FormComponent, },
-  { path: 'twitter', component: CampaignSystemComponent, },
+  { path: 'twitter', component: NewCampaignComponent, },
   { path: 'campaign', component: CampaignComponent, },
   { path: 'noSocial', component:  NoSocialMediaComponent, }
 ];
@@ -41,6 +43,7 @@ const routes: Routes = [
     CampaignTwoComponent,
     DropZoneDirective,
     NoSocialMediaComponent,
+    NewCampaignComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ const routes: Routes = [
     AngularFireStorageModule,
     AngularFireStorageModule,
   ],
-  providers: [AuthService, SeoService],
+  providers: [AuthService, SeoService, CardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

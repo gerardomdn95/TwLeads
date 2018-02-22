@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Lead } from '../models/app.lead-model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-no-social-media',
@@ -9,17 +10,17 @@ import { Lead } from '../models/app.lead-model';
 export class NoSocialMediaComponent implements OnInit {
 
   model: any;
-  public show: boolean;
+  public show_company: boolean;
 
   public showCompany(e): void {
     if (e) {
-      this.show = true;
+      this.show_company = true;
     } else {
-      this.show = false;
+      this.show_company = false;
     }
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.model = new Lead(null, null, null, null, null, null, null);
