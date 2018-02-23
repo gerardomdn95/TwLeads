@@ -4,8 +4,8 @@ export class Lead {
         public name: string,
         public email: string,
         public phone: string,
-        public region_id: string,
+        public region_id: number,
         public city: string,
-        public company_name?: string,
+        public company?: string,
     ) { }
 }

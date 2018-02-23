@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { not } from '@angular/compiler/src/output/output_ast';
 import { Lead } from '../models/app.lead-model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 @Component({
@@ -17,36 +18,36 @@ import { Lead } from '../models/app.lead-model';
 export class FormComponent implements OnInit {
   router: any;
   authService: any;
-  public koomkin = false;
   private userDetails: firebase.User = null;
   private user: Observable<firebase.User>;
   public show_company: boolean;
   public model: any;
+  APIENDPOINT = 'http://187.162.208.218:4200/twitter/lead';
 
   public showCompany(e): void {
     if (e) {
       this.show_company = true;
+      this.model.company = '';
     } else {
       this.show_company = false;
+      this.model.company = 'Particular';
     }
   }
 
-  constructor(private _firebaseAuth: AngularFireAuth) {
+  constructor(private _firebaseAuth: AngularFireAuth, private http: HttpClient) {
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
         if (user) {
           this.userDetails = user;
+          this.model = new Lead(null, this.userDetails.displayName, this.userDetails.providerData[0].email,
+            this.userDetails.phoneNumber , 2545, null, null);
           console.log(this.userDetails);
         } else {
           this.userDetails = null;
         }
       }
     );
-  }
-
-  signInWithKoomkin() {
-    this.koomkin = true;
   }
 
   signInWithTwitter() {
@@ -82,12 +83,27 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.model = new Lead(null, this.userDetails.displayName, this.userDetails.providerData[0].email,
-      null, null, null, null);
   }
 
-  get currentLead() {
-    return console.log(this.model);
+  postLead() {
+    console.log(this.model);
+    this.http.post(this.APIENDPOINT, {
+      user_id: 1,
+      name: this.model.name,
+      email: this.model.email,
+      phone: this.model.phone,
+      region_id: this.model.region_id,
+      city: this.model.city,
+      company: this.model.company
+    })
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log('Error occured');
+        }
+      );
   }
 
 }

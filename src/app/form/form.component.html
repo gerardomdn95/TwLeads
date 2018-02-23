@@ -1,4 +1,3 @@
-{{currentLead}}
 <div class="container">
   <h3 class="text-center">Cotiza con un click</h3>
   <div class="form-group" *ngIf="!userDetails">
@@ -37,17 +36,17 @@
           </div>
           <div *ngIf="show_company">
             <label for="pwd">Nombre de empresa</label>
-            <input type="text" class="form-control" id="pwd" [(ngModel)]="model.company">
+            <input type="text" class="form-control" id="pwd" [(ngModel)]="model.company_name">
           </div>
           <label for="pwd">Teléfono de contacto</label>
-          <input type="text" class="form-control" id="pwd" [(ngModel)]="userDetails.displayName">
+          <input type="text" maxlength="10" class="form-control" id="pwd" [(ngModel)]="model.phone">
           <label for="pwd">Correo electrónico</label>
           <input type="text" class="form-control" id="pwd" [(ngModel)]="model.email">
           <label for="pwd">Estado</label>
           <br>
           <div class="row">
             <div class="col-12">
-              <select style="color: #4080FC;">
+              <select style="color: #4080FC;" [(ngModel)]="model.region_id">
                 <option value="2537">Aguascalientes</option>
                 <option value="2538">Baja California</option>
                 <option value="2539">Baja California Sur</option>
@@ -86,13 +85,12 @@
           <label for="pwd">Ciudad</label>
           <input type="text" class="form-control" id="pwd" [(ngModel)]="model.city">
         </div>
-        <button type="button" class="btn btn-primary" (click)="logout()">¡Envía tu información!</button>
+        <button type="button" class="btn btn-primary" (click)="postLead()">¡Envía tu información!</button>
       </div>
     </div>
   </div>
-  <br> {{userDetails.providerData[0].providerId}}
+  <br>
 </div>
 
-<br><br>
-
-{{userDetails}}
+<br>
+<br>

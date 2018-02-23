@@ -23,12 +23,12 @@
         <label for="pwd">Teléfono de contacto</label>
         <input type="text" class="form-control" id="pwd" [(ngModel)]="model.phone">
         <label for="pwd">Correo electrónico</label>
-        <input type="text" class="form-control" id="pwd" [(ngModel)]="model.email">
+        <input type="email" class="form-control" id="pwd" [(ngModel)]="model.email">
         <label for="pwd">Estado</label>
         <br>
         <div class="row">
           <div class="col-12">
-            <select style="color: #4080FC;">
+            <select style="color: #4080FC;" [(ngModel)]="model.region_id">
               <option value="2537">Aguascalientes</option>
               <option value="2538">Baja California</option>
               <option value="2539">Baja California Sur</option>
@@ -67,9 +67,9 @@
         <label for="pwd">Ciudad</label>
         <input type="text" class="form-control" id="pwd" [(ngModel)]="model.city">
       </div>
-      <button type="button" class="btn btn-primary">¡Envía tu información!</button>
+      <button type="button" class="btn btn-primary" (click)="postLead()">¡Envía tu información!</button>
     </div>
   </div>
 </div>
-
+{{currentLead}}
 <br><br>
