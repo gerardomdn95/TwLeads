@@ -1,95 +1,108 @@
+<div class="desk-space"></div>
 <div class="container">
-  <h3 class="text-center">Cotiza con un click</h3>
-  <div class="form-group" *ngIf="!userDetails">
-    <p class="text-center">Hola, selecciona un
-      <br> canal para solicitar tu cotización</p>
-    <div class="text-center">
-      <img class="auth" src="../assets/img/facebook.svg" alt="" (click)="signInWithFacebook()">
-      <img class="auth" src="../assets/img/google.svg" alt="" (click)="signInWithGoogle()">
-      <img class="auth" src="../assets/img/twitter.svg" alt="" (click)="signInWithTwitter()">
-      <hr>o si prefieres
-      <hr>
-      <a routerLink="/noSocial">
-        <img class="auth" src="../assets/img/koomkin.svg">
-      </a>
-    </div>
-  </div>
-
-  <!-- Social Media Login -->
-  <div *ngIf="userDetails">
-    <div class="row">
-      <div class="container">
-        <p class="text-center">Bienvenido
-          <b>{{userDetails.displayName}}</b>, proporciona tus datos a continuación para obtener más información</p>
-        <div class="form-group">
-          <label for="usr">Nombre completo</label>
-          <input type="text" class="form-control" id="usr" [(ngModel)]="model.name">
-          <div class="form mx-auto" style="margin-top:15px;">
-            <div class="switch-field">
-              <input type="radio" id="Negocios" name="noSocial" value="Personal" (click)="showCompany(false)">
-              <label for="Negocios" style="text-transform: unset;">Cotización
-                <br>personal</label>
-              <input type="radio" id="Placer" name="noSocial" value="Empresarial" (click)="showCompany(true)">
-              <label for="Placer" style="text-transform: unset;">Cotización
-                <br>empresarial</label>
-            </div>
-          </div>
-          <div *ngIf="show_company">
-            <label for="pwd">Nombre de empresa</label>
-            <input type="text" class="form-control" id="pwd" [(ngModel)]="model.company_name">
-          </div>
-          <label for="pwd">Teléfono de contacto</label>
-          <input type="text" maxlength="10" class="form-control" id="pwd" [(ngModel)]="model.phone">
-          <label for="pwd">Correo electrónico</label>
-          <input type="text" class="form-control" id="pwd" [(ngModel)]="model.email">
-          <label for="pwd">Estado</label>
-          <br>
-          <div class="row">
-            <div class="col-12">
-              <select style="color: #4080FC;" [(ngModel)]="model.region_id">
-                <option value="2537">Aguascalientes</option>
-                <option value="2538">Baja California</option>
-                <option value="2539">Baja California Sur</option>
-                <option value="2540">Campeche</option>
-                <option value="2541">Chiapas</option>
-                <option value="2542">Chihuahua</option>
-                <option value="2543">Coahuila</option>
-                <option value="2544">Colima</option>
-                <option value="2545">Ciudad de México</option>
-                <option value="2546">Durango</option>
-                <option value="2547">Guanajuato</option>
-                <option value="2548">Guerrero</option>
-                <option value="2549">Hidalgo</option>
-                <option value="2550">Jalisco</option>
-                <option value="2551">México</option>
-                <option value="2552">Michoacán</option>
-                <option value="2553">Morelos</option>
-                <option value="2554">Nayarit</option>
-                <option value="2555">Nuevo León</option>
-                <option value="2556">Oaxaca</option>
-                <option value="2557">Puebla</option>
-                <option value="2558">Querétaro</option>
-                <option value="2559">Quintana Roo</option>
-                <option value="2560">San Luis Potosí</option>
-                <option value="2561">Sinaloa</option>
-                <option value="2562">Sonora</option>
-                <option value="2563">Tabasco</option>
-                <option value="2564">Tamaulipas</option>
-                <option value="2565">Tlaxcala</option>
-                <option value="2566">Veracruz</option>
-                <option value="2567">Yucatán</option>
-                <option value="2568">Zacatecas</option>
-              </select>
-            </div>
-          </div>
-          <label for="pwd">Ciudad</label>
-          <input type="text" class="form-control" id="pwd" [(ngModel)]="model.city">
-        </div>
-        <button type="button" class="btn btn-primary" (click)="postLead()">¡Envía tu información!</button>
+  <div class="row desk-box">
+    <div class="col-12 col-md-5">
+      <div class="align-middle">
+        <img src="../assets/img/desktop.png" class="img-fluid" alt="Responsive image">
       </div>
     </div>
+    <div class="col-12 col-md-7">
+      <h3 class="text-center">Cotiza con un click</h3>
+      <div class="form-group" *ngIf="!userDetails">
+        <p class="text-center">Hola, selecciona un
+          <br> canal para solicitar tu cotización</p>
+        <div class="text-center">
+          <img class="auth" src="../assets/img/facebook.svg" alt="" (click)="signInWithFacebook()">
+          <br>
+          <img class="auth" src="../assets/img/google.svg" alt="" (click)="signInWithGoogle()">
+          <br>
+          <img class="auth" src="../assets/img/twitter.svg" alt="" (click)="signInWithTwitter()">
+          <hr>o si prefieres
+          <hr>
+          <a routerLink="/noSocial">
+            <img class="auth" src="../assets/img/koomkin.svg">
+          </a>
+        </div>
+      </div>
+
+      <!-- Social Media Login -->
+      <div *ngIf="userDetails">
+        <div class="row">
+          <div class="container">
+            <p class="text-center">Bienvenido
+              <b>{{userDetails.displayName}}</b>, proporciona tus datos a continuación para obtener más información</p>
+            <div class="form-group">
+              <label for="usr">Nombre completo</label>
+              <input type="text" class="form-control" id="usr" [(ngModel)]="model.name">
+              <div class="form mx-auto" style="margin-top:15px;">
+                <div class="switch-field">
+                  <input type="radio" id="Negocios" name="noSocial" value="Personal" (click)="showCompany(false)">
+                  <label for="Negocios" style="text-transform: unset;">Cotización
+                    <br>personal</label>
+                  <input type="radio" id="Placer" name="noSocial" value="Empresarial" (click)="showCompany(true)">
+                  <label for="Placer" style="text-transform: unset;">Cotización
+                    <br>empresarial</label>
+                </div>
+              </div>
+              <div *ngIf="show_company">
+                <label for="pwd">Nombre de empresa</label>
+                <input type="text" class="form-control" id="pwd" [(ngModel)]="model.company_name">
+              </div>
+              <label for="pwd">Teléfono de contacto</label>
+              <input type="number" maxlength="10" class="form-control" id="pwd" [(ngModel)]="model.phone">
+              <label for="pwd">Correo electrónico</label>
+              <input type="text" class="form-control" id="pwd" [(ngModel)]="model.email">
+              <label for="pwd">Estado</label>
+              <br>
+              <div class="row">
+                <div class="col-12">
+                  <select style="color: #4080FC;" [(ngModel)]="model.region_id">
+                    <option value="2537">Aguascalientes</option>
+                    <option value="2538">Baja California</option>
+                    <option value="2539">Baja California Sur</option>
+                    <option value="2540">Campeche</option>
+                    <option value="2541">Chiapas</option>
+                    <option value="2542">Chihuahua</option>
+                    <option value="2543">Coahuila</option>
+                    <option value="2544">Colima</option>
+                    <option value="2545">Ciudad de México</option>
+                    <option value="2546">Durango</option>
+                    <option value="2547">Guanajuato</option>
+                    <option value="2548">Guerrero</option>
+                    <option value="2549">Hidalgo</option>
+                    <option value="2550">Jalisco</option>
+                    <option value="2551">México</option>
+                    <option value="2552">Michoacán</option>
+                    <option value="2553">Morelos</option>
+                    <option value="2554">Nayarit</option>
+                    <option value="2555">Nuevo León</option>
+                    <option value="2556">Oaxaca</option>
+                    <option value="2557">Puebla</option>
+                    <option value="2558">Querétaro</option>
+                    <option value="2559">Quintana Roo</option>
+                    <option value="2560">San Luis Potosí</option>
+                    <option value="2561">Sinaloa</option>
+                    <option value="2562">Sonora</option>
+                    <option value="2563">Tabasco</option>
+                    <option value="2564">Tamaulipas</option>
+                    <option value="2565">Tlaxcala</option>
+                    <option value="2566">Veracruz</option>
+                    <option value="2567">Yucatán</option>
+                    <option value="2568">Zacatecas</option>
+                  </select>
+                </div>
+              </div>
+              <label for="pwd">Ciudad</label>
+              <input type="text" class="form-control" id="pwd" [(ngModel)]="model.city">
+            </div>
+            <button type="button" class="btn btn-primary" (click)="postLead()" (click)="logout()">¡Envía tu información!</button>
+          </div>
+        </div>
+      </div>
+      <br>
+
+    </div>
   </div>
-  <br>
 </div>
 
 <br>

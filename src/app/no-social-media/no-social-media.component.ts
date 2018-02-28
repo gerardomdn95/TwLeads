@@ -26,7 +26,7 @@ export class NoSocialMediaComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.model = new Lead(null, null, null, null, 2558, null, null);
+    this.model = new Lead(null, null, null, null, null, null, null);
   }
 
   postLead() {

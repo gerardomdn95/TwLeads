@@ -18,18 +18,11 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from './services/auth.service';
 import { Router, Routes, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { CampaignComponent } from './campaign/campaign.component';
 import { SeoService } from './services/seo.service';
-import { CampaignSystemComponent } from './campaign-system/campaign-system.component';
-import { CampaignTwoComponent } from './campaign-two/campaign-two.component';
-import { DropZoneDirective } from './directives/drop-zone.directive';
 import { NoSocialMediaComponent } from './no-social-media/no-social-media.component';
-import { NewCampaignComponent } from './new-campaign/new-campaign.component';
 
 const routes: Routes = [
   { path: '', component: FormComponent, },
-  { path: 'twitter', component: NewCampaignComponent, },
-  { path: 'campaign', component: CampaignComponent, },
   { path: 'noSocial', component:  NoSocialMediaComponent, }
 ];
 
@@ -38,12 +31,7 @@ const routes: Routes = [
     AppComponent,
     FormComponent,
     NavComponent,
-    CampaignComponent,
-    CampaignSystemComponent,
-    CampaignTwoComponent,
-    DropZoneDirective,
     NoSocialMediaComponent,
-    NewCampaignComponent,
   ],
   imports: [
     BrowserModule,

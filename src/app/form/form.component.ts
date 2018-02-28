@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { not } from '@angular/compiler/src/output/output_ast';
 import { Lead } from '../models/app.lead-model';
@@ -22,6 +23,9 @@ export class FormComponent implements OnInit {
   private user: Observable<firebase.User>;
   public show_company: boolean;
   public model: any;
+  public campaign_id: any;
+  public channel: any;
+  public company_type: any;
   APIENDPOINT = 'http://187.162.208.218:4200/twitter/lead';
 
   public showCompany(e): void {
@@ -34,7 +38,11 @@ export class FormComponent implements OnInit {
     }
   }
 
-  constructor(private _firebaseAuth: AngularFireAuth, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private _firebaseAuth: AngularFireAuth, private http: HttpClient) {
+    this.campaign_id = this.route.snapshot.queryParams['campaign_id'];
+    this.channel = this.route.snapshot.queryParams['channel'];
+    this.company_type = this.route.snapshot.queryParams['company_type'];
+    console.log(this.campaign_id + ' ' + this.channel + ' ' + this.company_type);
     this.user = _firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
@@ -88,7 +96,7 @@ export class FormComponent implements OnInit {
   postLead() {
     console.log(this.model);
     this.http.post(this.APIENDPOINT, {
-      user_id: 1,
+      user_id: this.campaign_id,
       name: this.model.name,
       email: this.model.email,
       phone: this.model.phone,
